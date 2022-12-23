@@ -6,16 +6,18 @@ C_SRC_CIRCLST	=	circlst_building \
 					circlst_rotate \
 					circlst_swap_push
 
-C_RSC			=	parsing
+C_RSC			=	parsing \
+					indexation_fusion_sort
 			
 C_SRC_ALL		=	$(addprefix circlst/, $(C_SRC_CIRCLST)) $(C_RSC)
 C_FILES			=	$(addprefix srcs/, $(addsuffix .c, $(C_SRC_ALL)))
 
-O_FILES = $(C_FILES:.c=.o)
-O_FILES_DEBUG = $(C_FILES:.c=_debug.o)
+O_FILES			= $(C_FILES:.c=.o)
+O_FILES_DEBUG	= $(C_FILES:.c=_debug.o)
 
-TEST = test/test_parsing.c
-O_TEST = $(TEST:.c=.o)
+TEST 	=		test/test_fusion.c \
+				test/test_tools.c
+O_TEST	=		$(TEST:.c=.o)
 
 LIB_NAME = libft.a
 LIB_DIR = includes/libft/
@@ -31,7 +33,7 @@ all: $(NAME)
 %.o : %.c $(LIB_DIR)$(LIB_NAME) $(INCLUDE)
 	$(CC) -c $< -o $@
 
-$(NAME) : $(O_FILES) $(O_TEST)
+$(NAME) : $(O_FILES) $(O_TEST) $(LIB_DIR)$(LIB_NAME)
 	$(CC) $(C_FLAGS) $(C_FLAGS) $(O_FILES) $(O_TEST) $(LIB_INCLUDE) -o $(NAME)
 
 $(LIB_DIR)$(LIB_NAME) :

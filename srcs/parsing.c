@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:29:56 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/21 21:42:05 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:23:06 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static int	fts_parse_to_table(int ac, char **av, t_2int	**tab)
 	*tab = malloc((ac - 1) * sizeof(t_2int));
 	if (!tab)
 		return (1);
-	elem.index = 0;
 	i = 0;
 	while (i < ac - 1)
 	{
 		if (fts_check_number_format(av[i +1]))
 			return (1);
 		elem.value = ft_atoi(av[i + 1]);
+		elem.index = i;
 		if (elem.value == 0 && fts_check_atoi(av[i + 1]))
 		{
 			free(*tab);
@@ -102,13 +102,9 @@ int	ft_parsing(int ac, char **av, t_lstcirc **lst)
 
 	if (fts_parse_to_table(ac, av, &tab))
 		return (1);
-
-/*faire la copie de table, le trier et repercuter les indexes*/
-
-
-		
-	//fts_parse_index_table(tab);  // verifer si on a besoin des index pour la suite.
-	if (fts_parse_table_to_lst(tab, ac, lst))
+	ft_parse_index_table(tab, ac - 1);
+	if (ft_parse_index_table(tab, ac -1)
+		|| fts_parse_table_to_lst(tab, ac, lst))
 	{
 		free(tab);
 		return (1);
