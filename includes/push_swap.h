@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 16:18:23 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:44:35 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int			ft_circlst_rev_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
 int			ft_circlst_swap(t_lstcirc **lst_top);
 int			ft_circlst_swap2(t_lstcirc **lst_top_1, t_lstcirc **lst_top_2);
 int			ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2);
+/*circlst_tools.c*/
+int			ft_circlst_len(t_lstcirc *lst_top);
 /*parsing.c*/
 int			ft_parsing(int ac, char **av, t_lstcirc **lst);
 int			ft_parse_index_table(t_2int *tab, int len_tab);
@@ -54,4 +56,6 @@ int			ft_parse_index_table(t_2int *tab, int len_tab);
 
 /*Tests a suppr*/
 void ft_print_table(t_2int *tab, int len_tab);
+
+
 #endif

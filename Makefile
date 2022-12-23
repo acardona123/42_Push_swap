@@ -4,7 +4,8 @@ NAME =	push_swap
 C_SRC_CIRCLST	=	circlst_building \
 					circlst_print \
 					circlst_rotate \
-					circlst_swap_push
+					circlst_swap_push \
+					circlst_tools
 
 C_RSC			=	parsing \
 					indexation_fusion_sort
@@ -15,9 +16,10 @@ C_FILES			=	$(addprefix srcs/, $(addsuffix .c, $(C_SRC_ALL)))
 O_FILES			= $(C_FILES:.c=.o)
 O_FILES_DEBUG	= $(C_FILES:.c=_debug.o)
 
-TEST 	=		test/test_fusion.c \
-				test/test_tools.c
-O_TEST	=		$(TEST:.c=.o)
+C_TEST 			=	test_circlst_building \
+					test_tools
+C_FILES_TEST	=	$(addsuffix .c, $(addprefix test/, $(C_TEST)))
+O_TEST			=	$(C_FILES_TEST:.c=.o)
 
 LIB_NAME = libft.a
 LIB_DIR = includes/libft/
@@ -41,7 +43,7 @@ $(LIB_DIR)$(LIB_NAME) :
 
 clean :
 	@make --no-print-directory clean -C $(LIB_DIR)
-	rm -rf $(O_FILES) $(O_TEST)
+	rm -rf $(O_FILES) $(O_TEST) $(O_FILES_DEBUG)
 
 fclean : clean
 	@make --no-print-directory fclean -C $(LIB_DIR)
