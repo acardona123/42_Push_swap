@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:23:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/21 18:18:24 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 00:50:38 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_lstcirc	*ft_circlst_new_elem(int nb, unsigned int index)
   an element under the pile.*/
 int	ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem)
 {
+	new_elem->up = 0;
+	new_elem->down = 0;
 	if (!lst_origin)
 		return (1);
 	if (!(*lst_origin))
@@ -40,12 +42,12 @@ int	ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem)
 		return (0);
 	}
 	new_elem->down = *lst_origin;
-	if (!((*lst_origin)->up))
+	if (!((*lst_origin)->up)) //1 seul elem preexistant
 	{
 		new_elem->up = *lst_origin;
 		(*lst_origin)->down = new_elem;
 	}
-	else
+	else //plusieurs elem preexistants
 	{
 		new_elem->up = (*lst_origin)->up;
 		(*lst_origin)->up->down = new_elem;

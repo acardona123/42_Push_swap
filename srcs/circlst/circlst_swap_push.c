@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:51:40 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/21 18:16:10 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 00:39:58 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,26 @@ int	ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2)
 {
 	t_lstcirc	*elem;
 
+	elem = 0;
 	if (!(lst1 && lst2))
 		return (1);
 	if (!(*lst2))
 		return (0);
 	elem = *lst2;
-	*lst2 = (*lst2)->down;
+	if ((*lst2)->up == 0)//un seul elem ds lst2
+		*lst2 = 0;
+	else if ((*lst2)->up->up == *lst2)//2 elem
+	{
+		(*lst2) = (*lst2)->up;
+		(*lst2)->down = 0;
+		(*lst2)->up = 0;
+	}
+	else //plus de 2 elem ds lst2
+	{
+		(*lst2)->up->down = (*lst2)->down;
+		(*lst2)->down->up = (*lst2)->up;
+		*lst2 = (*lst2)->down;
+	}
 	return (ft_circlst_addtop(lst1, elem));
 }
 
@@ -38,12 +52,20 @@ int	ft_circlst_swap(t_lstcirc **lst_top)
 		return (1);
 	if (!(*lst_top) || !((*lst_top)->up))
 		return (0);
+	if ((*lst_top)->up->up == (*lst_top))
+	{
+		*lst_top = (*lst_top)->up;
+		return (0);
+	}
 	tmp = (*lst_top)->up;
 	(*lst_top)->up = (*lst_top)->down;
 	((*lst_top)->down)->up = tmp;
-	(*lst_top)->down = (*lst_top)->down->down;
-	(*lst_top)->down->down = *lst_top;
+	tmp = (*lst_top)->down->down;
+	(*lst_top)->down->down = (*lst_top);
+	(*lst_top)->down = tmp;
+	(*lst_top)->down->up = *lst_top;
 	*lst_top = (*lst_top)->up;
+	(*lst_top)->up->down = *lst_top;
 	return (0);
 }
 

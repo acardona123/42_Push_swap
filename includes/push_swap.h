@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 19:44:35 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/23 22:40:18 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 # include "libft/libft.h"
 # include <stdlib.h>
 
-# include <stdio.h>
+#include <stdio.h>
 
 typedef struct s_lstcirc
 {
 	int					value;
-	unsigned int		index;
+	int					index;
 	struct s_lstcirc	*up;
 	struct s_lstcirc	*down;	
 }	t_lstcirc;
@@ -37,7 +37,7 @@ int			ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem);
 int			ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem);
 int			ft_cirlst_clear(t_lstcirc **lst);
 /*circlst_print.c*/
-void		ft_circlst_printduo(t_lstcirc **lst1, t_lstcirc **lst2);
+void		ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2);
 /*circlst_rotate.c*/
 int			ft_circlst_rotate(t_lstcirc **lst_top);
 int			ft_circlst_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
@@ -52,10 +52,7 @@ int			ft_circlst_len(t_lstcirc *lst_top);
 /*parsing.c*/
 int			ft_parsing(int ac, char **av, t_lstcirc **lst);
 int			ft_parse_index_table(t_2int *tab, int len_tab);
-
-
-/*Tests a suppr*/
-void ft_print_table(t_2int *tab, int len_tab);
-
+/*sorting.c*/
+void		ft_pile_sort(t_lstcirc **la, t_lstcirc **lb, int pivot, int nb_sup);
 
 #endif

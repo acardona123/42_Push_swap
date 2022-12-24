@@ -8,7 +8,9 @@ C_SRC_CIRCLST	=	circlst_building \
 					circlst_tools
 
 C_RSC			=	parsing \
-					indexation_fusion_sort
+					indexation_fusion_sort \
+					sorting
+					
 			
 C_SRC_ALL		=	$(addprefix circlst/, $(C_SRC_CIRCLST)) $(C_RSC)
 C_FILES			=	$(addprefix srcs/, $(addsuffix .c, $(C_SRC_ALL)))
@@ -16,8 +18,7 @@ C_FILES			=	$(addprefix srcs/, $(addsuffix .c, $(C_SRC_ALL)))
 O_FILES			= $(C_FILES:.c=.o)
 O_FILES_DEBUG	= $(C_FILES:.c=_debug.o)
 
-C_TEST 			=	test_circlst_building \
-					test_tools
+C_TEST 			=	test_circlst_operations
 C_FILES_TEST	=	$(addsuffix .c, $(addprefix test/, $(C_TEST)))
 O_TEST			=	$(C_FILES_TEST:.c=.o)
 

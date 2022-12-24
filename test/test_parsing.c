@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 		write(1, "Erreur de parsing.\n", 19);
 		return (1);
 	}
-	ft_circlst_printduo(&top_elemA, &top_elemB);
+	ft_circlst_printduo("", &top_elemA, &top_elemB);
 	ft_cirlst_clear(&top_elemA);
 	return (0);
 }
