@@ -6,13 +6,13 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 22:40:18 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 10:52:09 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/libft.h"
+# include "libftprintf/ft_printf.h"
 # include <stdlib.h>
 
 #include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:29:56 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 21:52:41 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:46:10 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int	ft_parsing(int ac, char **av, t_lstcirc **lst)
 
 	if (fts_parse_to_table(ac, av, &tab))
 		return (1);
-	ft_parse_index_table(tab, ac - 1);
 	if (ft_parse_index_table(tab, ac -1)
 		|| fts_parse_table_to_lst(tab, ac, lst))
 	{

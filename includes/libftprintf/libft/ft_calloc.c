@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:03:26 by acardona          #+#    #+#             */
-/*   Updated: 2022/11/16 13:27:39 by acardona         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:30:33 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	tot;
 
 	ptr = NULL;
-	if (size != 0 && nmemb > ULLONG_MAX / size)
-		return (NULL);
+	if (size == 0 || nmemb == 0 || nmemb > ULLONG_MAX / size)
+		return (malloc(0));
 	tot = nmemb * size;
 	ptr = malloc(tot);
 	if (!ptr)

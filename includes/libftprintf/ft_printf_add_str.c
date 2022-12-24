@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circlst_tools.c                                    :+:      :+:    :+:   */
+/*   ft_printf_add_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 19:25:33 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 12:27:00 by acardona         ###   ########.fr       */
+/*   Created: 2022/11/14 19:14:35 by acardona          #+#    #+#             */
+/*   Updated: 2022/11/17 11:47:17 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "ft_printf.h"
 
-int	ft_circlst_len(t_lstcirc *lst_top)
+int	ft_lstbiadd_str(t_listbi **lst_init, char *str, size_t start, size_t len)
 {
-	int			i;
-	t_lstcirc	*elem;
+	char	*sub_str;
 
-	if (!lst_top)
-		return (0);
-	if ((*lst_top).down == 0)
-		return (1);
-	elem = lst_top;
-	i = 1;
-	while (elem->down != lst_top)
-	{
-		i++;
-		elem = elem->down;
-	}
-	return (i);
+	sub_str = ft_substr(str, (unsigned int) start, len);
+	if (!sub_str)
+		return (ft_lstbiclear(lst_init));
+	return (ft_lstbiaddnewelem(lst_init, sub_str, ft_strlen(sub_str)));
 }

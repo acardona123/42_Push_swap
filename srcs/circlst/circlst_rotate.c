@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:00:07 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/21 18:16:07 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 11:38:27 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_circlst_rotate(t_lstcirc **lst_top)
 		return (1);
 	else if (!(*lst_top) || !((*lst_top)->up))
 		return (0);
-	*lst_top = (*lst_top)->up;
+	*lst_top = (*lst_top)->down;
 	return (0);
 }
 
@@ -42,9 +42,9 @@ int	ft_circlst_rev_rotate(t_lstcirc **lst_top)
 {
 	if (!lst_top)
 		return (1);
-	else if (!(*lst_top) || !((*lst_top)->down))
+	else if (!(*lst_top) || !((*lst_top)->up))
 		return (0);
-	*lst_top = (*lst_top)->down;
+	*lst_top = (*lst_top)->up;
 	return (0);
 }
 

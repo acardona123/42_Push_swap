@@ -17,34 +17,31 @@ int	main(int ac, char **av)
 		write(1, "Erreur de parsing.\n", 19);
 		return (1);
 	}
+	ft_parsing(ac, av, &top_b);
+	top_b = top_b->down->down->down;
 	ft_circlst_printduo("Init :", &top_a, &top_b);
-	
-	if (0) //sa
+	if (1) //sa
 	{
-		ft_circlst_swap(&top_a);
-		ft_circlst_printduo("sa", &top_a, &top_b);
+		ft_circlst_swap2(&top_a, &top_b);
+		ft_circlst_printduo("ss", &top_a, &top_b);
+		ft_circlst_swap2(&top_a, &top_b);
+		ft_circlst_printduo("ss", &top_a, &top_b);
 	}
 	if (1) //pb
 	{
-		ft_parsing(ac, av, &top_b);
-		top_b = top_b->down;
-		printf("top :\t%p\nlast :\t%p\nlast->up :\t%p\n\n", top_b, top_b->up, top_b->up->down);
-
-
-/*quefa ce foutu print qui n'affiche pas bien la liste !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-
-		//ft_circlst_push(&top_b, &top_a);
-		ft_circlst_printduo("pb", &top_a, &(top_a->up));
-
-		// ft_circlst_push(&top_b, &top_a);
-		// ft_circlst_printduo("pb", &top_a, &top_b);
+		ft_circlst_push(&top_b, &top_a);
+		ft_circlst_printduo("pb", &top_a, &top_b);
+		ft_circlst_push(&top_a, &top_b);
+		ft_circlst_printduo("pa", &top_a, &top_b);
 	}
-	if (0) //ra
+	if (1) //ra et rra
 	{
-		ft_circlst_printduo("ra", &top_a, &top_b);
+		ft_circlst_rotate2(&top_a, &top_b);
+		ft_circlst_printduo("rr", &top_a, &top_b);
+		ft_circlst_rev_rotate2(&top_a, &top_b);
+		ft_circlst_printduo("rrr", &top_a, &top_b);
 	}
-
 	ft_cirlst_clear(&top_a);
+	ft_cirlst_clear(&top_b);
 	return (0);
 }

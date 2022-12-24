@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:56:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 22:46:16 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:32:12 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_circlst_printduo("Test", &top_a, &top_b);
-	ft_pile_sort(&top_a, &top_b, ft_circlst_len(top_a) / 2, 0);
+	ft_pile_sort(&top_a, &top_b, ft_circlst_len(top_a) / 2 + 1, 0);
+	while (top_b)
+		ft_circlst_push(&top_a, &top_b);
 	ft_circlst_printduo("", &top_a, &top_b);
 	ft_cirlst_clear(&top_a);
 	return (0);

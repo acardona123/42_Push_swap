@@ -13,6 +13,8 @@ C_FILES_BONUS = $(addsuffix .c, $(C_ROOT_BONUS))
 O_FILES = $(C_FILES:c=o)
 O_FILES_BONUS = $(C_FILES_BONUS:c=o)
 
+LIBFT = libft/libft.a
+
 H_INCLUDES = ./libft.h
 
 all: ${NAME}
@@ -24,7 +26,7 @@ ${NAME}: $(O_FILES)
 	ar rc $(NAME) ${O_FILES}
 
 bonus : $(O_FILES) $(O_FILES_BONUS) 
-	ar rcs $(NAME) ${O_FILES} $(O_FILES_BONUS)
+	ar rc $(NAME) ${O_FILES} $(O_FILES_BONUS)
 
 clean:
 	@rm -f $(O_FILES) $(O_FILES_BONUS)
