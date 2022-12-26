@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 10:52:09 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/26 12:16:26 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int			ft_circlst_len(t_lstcirc *lst_top);
 int			ft_parsing(int ac, char **av, t_lstcirc **lst);
 int			ft_parse_index_table(t_2int *tab, int len_tab);
 /*sorting.c*/
-void		ft_pile_sort(t_lstcirc **la, t_lstcirc **lb, int pivot, int nb_sup);
+void		ft_pile_sort(t_lstcirc **la, t_lstcirc **lb, int pivot);
 
 #endif
