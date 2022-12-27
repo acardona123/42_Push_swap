@@ -6,116 +6,125 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 15:29:08 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:48:02 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-/*Sort a pile l1 of 3 consecutive integers*/
-static void	fts_pile_sort_trio(t_lstcirc **l)
+/*Pivot made in la;
+separate the len first elements of la:
+(Pivot = median inf =>) push the len/2+len%2  the ones <= pivot toward lb .*/
+int	fts_pivot_a(t_lstcirc **la, t_lstcirc **lb, int len, int pivot)
 {
-	int	max;
+	int	cpt_push;
+	int	cpt_rot;
 
-	max = (int)(((size_t)((*l)->index) + (*l)->up->index
-				+ (*l)->down->index) / 3 + 1);
-	if (!l || !(*l))
-		return ;
-	if ((*l)->index == max)
+	cpt_push = len / 2;
+	cpt_rot = 0;
+	while (cpt_push > 0)
 	{
-		ft_circlst_rotate(l);
-		write (1, "1\n", 2);
-	}
-	if ((*l)->down->index == max)
-	{
-		ft_circlst_rev_rotate(l);
-		write (1, "1\n", 2);
-	}
-	if ((*l)->value == max - 1)
-	{
-		ft_circlst_swap(l);
-		write (1, "1\n", 2);
-	}
-}
-
-/*Sorts the given using a second one as a buffer (quicksort methode)*/
-void	ft_pile_sort(t_lstcirc **l_a, t_lstcirc **l_b, int pivot)
-{
-	int	len;
-	int	cpt; //compte le nb d'elements superierus deja transferes vers b, evite de regarder encore si ils ont tous etes trouves.
-	int nb_sup_next;
-
-	len = ft_circlst_len(*l_a);
-	// tri dans le cas ou il n'y a qu'un ou deux elements a comparer
-	if (len < 3) 
-	{
-		ft_printf("\e[0;101m\n");//rouge
-		if ((*l_a)->down && ((*l_a)->down)->index < (*l_a)->index)
+		if ((*la)->index >= pivot)
 		{
-			ft_circlst_swap(l_a);
-			write (1, "1\n", 2);
-			ft_circlst_printduo("sa", l_a, l_b);
-		}
-		ft_circlst_push(l_b, l_a);
-		write (1, "1\n", 2);
-		ft_circlst_printduo("pb", l_a, l_b);
-		ft_circlst_rotate(l_b);
-		write (1, "1\n", 2);
-		ft_circlst_printduo("rb", l_a, l_b);
-		if (*l_a)
-		{
-			ft_circlst_push(l_b, l_a);
-			write (1, "1\n", 2);
-		ft_circlst_printduo("pb", l_a, l_b);
-			ft_circlst_rotate(l_b);
-			write (1, "1\n", 2);
-			ft_circlst_printduo("rb", l_a, l_b);
-		}
-		return ;
-	}
-	if (len == 3)
-		return (fts_pile_sort_trio(l_b));
-	//passage des elements > pivot vers l_b
-	nb_sup_next = len / 2 + len % 2;
-	ft_printf("\e[2;102mPivot : %d\e[0;102m\n", pivot);//vert
-	ft_circlst_printduo("Etat avant pivot :", l_a, l_b);
-	cpt = 0;
-	while (cpt < nb_sup_next)
-	{
-		ft_printf("cpt : %d, nb_sup_next : %d\n", cpt, nb_sup_next);
-		if ((*l_a)->index >= pivot)
-		{
-			ft_circlst_push(l_b, l_a);
-			write (1, "1\n", 2);
-			ft_circlst_printduo("pb", l_a, l_b);
-			cpt ++;
+			ft_circlst_rotate(la);
+			cpt_rot++;
 		}
 		else
 		{
-			ft_circlst_rotate(l_a);
-			write (1, "1\n", 2);
-			ft_circlst_printduo("ra", l_a, l_b);
+			ft_circlst_push(la, lb);
+			cpt_push++;
 		}
 	}
-	ft_printf("\e[0m\n\n");
-
-	//trie par recusion de la liste dt les elem sont < pivot. Ca envoie la liste triee en dessous de l_b. A la fin l_a vide
-	len = ft_circlst_len(*l_a);
-	ft_pile_sort(l_a, l_b, pivot - len / 2 - len % 2);
-
-	//Recuperation des elem > pivot depuis l_b et meme tri par recursion
-	ft_printf("\e[0;103m\n");//kaki
-	if (nb_sup_next > 0)
+	while (cpt_rot)
 	{
-		while (nb_sup_next > 0)
-		{
-			ft_circlst_push(l_a, l_b);
-			write (1, "1\n", 2);
-			ft_circlst_printduo("pa", l_a, l_b);
-			nb_sup_next--;
-		}
-		len = ft_circlst_len(*l_a);
-		ft_pile_sort(l_a, l_b, pivot + len / 2);
+		ft_circlst_rev_rotate(la);
+		cpt_rot--;
 	}
-	ft_printf("\e[0m\n");
+}
+
+/*Pivot made in lb;
+keep len/2+len%2 elem <=pivot dans lb.*/
+int	fts_pivot_b(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
+{
+	int	cpt_push;
+	int	cpt_rot;
+
+	cpt_push = len / 2;
+	cpt_rot = 0;
+	while (cpt_push > 0)
+	{
+		if ((*lb)->index < pivot)
+		{
+			ft_circlst_rotate(lb);
+			cpt_rot++;
+		}
+		else
+		{
+			ft_circlst_push(lb, la);
+			cpt_push++;
+		}
+	}
+	while (cpt_rot)
+	{
+		ft_circlst_rev_rotate(lb);
+		cpt_rot--;
+	}
+}
+
+/*Return 1 if the first n elements of the pile are sorted and 0 if not*/
+int	fts_is_sorted(t_lstcirc **lst, int len)
+{
+	t_lstcirc	*elem;
+	int			i;
+
+	if (!lst)
+		return (0);
+	i = 0;
+	elem = *lst;
+	if (!(elem->down))
+		return (1);
+	while (i < len && elem->down != *lst)
+	{
+		if (elem->index > elem->down->index)
+			return (0);
+		elem = elem->down;
+		i--;
+	}
+	return (1);
+}
+
+/*Sort the top 3 elem of the list, used in la*/
+void	fts_sort_trio(t_lstcirc **lst)
+{
+	
+}
+
+/*Sort pile a (smaller at top)*/
+void	ft_sort(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
+{
+	int	remain_b;
+	int	pivot_b;
+
+	if (fts_is_sorted(la, len))
+		return ;
+	if (len <= 3)
+	{
+		fts_sort_trio(la);
+		return ;
+	}
+	fts_pivot(la, lb, len, pivot_a);
+	remain_b = len / 2 + len % 2;
+	pivot_b = pivot_a - remain_b / 2;
+	pivot_a = pivot_a + (len / 2) / 2 + (len / 2) % 2;
+	ft_sort(la, lb, len / 2, pivot_a);
+	while (remain_b > 6)
+	{
+		fts_pivot_b(la, lb, remain_b, pivot_b);
+		remain_b = remain_b / 2 + remain_b % 2;
+		pivot_b = pivot_b - remain_b / 2;
+		pivot_a = pivot_b + (remain_b / 2) / 2 + (remain_b / 2) % 2;
+		ft_sort(la, lb, len, pivot_a);
+	}
+	fts_pivot_b(la, lb, remain_b, pivot_b);
+	ft_sort_double_trio(la, lb);
 }
