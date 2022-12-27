@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 19:48:02 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/27 21:06:54 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	fts_pivot_a(t_lstcirc **la, t_lstcirc **lb, int len, int pivot)
 
 /*Pivot made in lb;
 keep len/2+len%2 elem <=pivot dans lb.*/
-int	fts_pivot_b(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
+int	fts_pivot_b(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_b)
 {
 	int	cpt_push;
 	int	cpt_rot;
@@ -53,7 +53,7 @@ int	fts_pivot_b(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
 	cpt_rot = 0;
 	while (cpt_push > 0)
 	{
-		if ((*lb)->index < pivot)
+		if ((*lb)->index < pivot_b)
 		{
 			ft_circlst_rotate(lb);
 			cpt_rot++;
@@ -71,32 +71,30 @@ int	fts_pivot_b(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
 	}
 }
 
-/*Return 1 if the first n elements of the pile are sorted and 0 if not*/
-int	fts_is_sorted(t_lstcirc **lst, int len)
+/*pile a : Sort the top 3 elem of the pile*/
+void	fts_sort_trioa(t_lstcirc **lst, int len)
 {
-	t_lstcirc	*elem;
-	int			i;
+	
+}
 
-	if (!lst)
-		return (0);
-	i = 0;
-	elem = *lst;
-	if (!(elem->down))
-		return (1);
-	while (i < len && elem->down != *lst)
-	{
-		if (elem->index > elem->down->index)
-			return (0);
-		elem = elem->down;
-		i--;
-	}
-	return (1);
+/*pile b: send the 3 sorted elem to a (method optimised to created colisions)*/
+
+
+/*Sort the top 3 elem of the list, used in la*/
+void	fts_sort_trioa(t_lstcirc **lst, int len)
+{
+	
 }
 
 /*Sort the top 3 elem of the list, used in la*/
-void	fts_sort_trio(t_lstcirc **lst)
+void	fts_sort_doubletrio(t_lstcirc **lsta, t_lstcirc **lstb, int lentot)
 {
-	
+	int	lena;
+	int	lenb;
+
+	lena = lentot / 2 + lentot % 2;
+	lenb = lentot / 2;
+	fts_sort_trio_a();
 }
 
 /*Sort pile a (smaller at top)*/
@@ -105,7 +103,7 @@ void	ft_sort(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
 	int	remain_b;
 	int	pivot_b;
 
-	if (fts_is_sorted(la, len))
+	if (fts_i_sorted(la, len))
 		return ;
 	if (len <= 3)
 	{
@@ -126,5 +124,5 @@ void	ft_sort(t_lstcirc **la, t_lstcirc **lb, int len, int pivot_a)
 		ft_sort(la, lb, len, pivot_a);
 	}
 	fts_pivot_b(la, lb, remain_b, pivot_b);
-	ft_sort_double_trio(la, lb);
+	ft_sort_double_trio(la, lb, remain_b);
 }
