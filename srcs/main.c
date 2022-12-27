@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:56:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 15:31:05 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:08:38 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int ac, char **av)
 	}
 	ft_circlst_printduo("Situation initiale :", &top_a, &top_b);
 	ft_pile_sort(&top_a, &top_b, ft_circlst_len(top_a) / 2 + 1);
-	// while (top_b)
-	// 	ft_circlst_push(&top_a, &top_b);
+	while (top_b)
+		ft_circlst_push(&top_a, &top_b);
 	ft_circlst_printduo("Resultat :", &top_a, &top_b);
 	ft_cirlst_clear(&top_a);
 	return (0);
