@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:00:07 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 11:38:27 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:50:23 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 /*ra || rb : rotation, move the origin one element upward. It corresponds to
  moving each element of the pile downward and puting the bottom one on top*/
-int	ft_circlst_rotate(t_lstcirc **lst_top)
+int	ft_circlst_rotate(t_lstcirc **lst_top, char *msg)
 {
+	if (msg)
+		ft_putendl_fd(msg, 1);
 	if (!lst_top)
 		return (1);
 	else if (!(*lst_top) || !((*lst_top)->up))
@@ -30,16 +32,19 @@ int	ft_circlst_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2)
 {
 	int	i;
 
+	ft_putendl_fd("rr", 1);
 	i = 0;
-	i += ft_circlst_rotate(lst_top1);
-	i += ft_circlst_rotate(lst_top2);
+	i += ft_circlst_rotate(lst_top1, 0);
+	i += ft_circlst_rotate(lst_top2, 0);
 	return (i);
 }
 
 /*rra || rrb : reverse rotation, opposit of ft_circlst_rotate : move all
  elements upward, the first one become the lastone*/
-int	ft_circlst_rev_rotate(t_lstcirc **lst_top)
+int	ft_circlst_rev_rotate(t_lstcirc **lst_top, char *msg)
 {
+	if (msg)
+		ft_putendl_fd(msg, 1);
 	if (!lst_top)
 		return (1);
 	else if (!(*lst_top) || !((*lst_top)->up))
@@ -54,8 +59,9 @@ int	ft_circlst_rev_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2)
 {
 	int	i;
 
+	ft_putendl_fd("rrr", 1);
 	i = 0;
-	i += ft_circlst_rev_rotate(lst_top1);
-	i += ft_circlst_rev_rotate(lst_top2);
+	i += ft_circlst_rev_rotate(lst_top1, 0);
+	i += ft_circlst_rev_rotate(lst_top2, 0);
 	return (i);
 }

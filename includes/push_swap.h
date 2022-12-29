@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 23:51:05 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/29 00:52:29 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,28 @@ int			ft_cirlst_clear(t_lstcirc **lst);
 /*circlst_print.c*/
 void		ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2);
 /*circlst_rotate.c*/
-int			ft_circlst_rotate(t_lstcirc **lst_top);
+int			ft_circlst_rotate(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
-int			ft_circlst_rev_rotate(t_lstcirc **lst_top);
+int			ft_circlst_rev_rotate(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_rev_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
 /*circlst_swap_push.c*/
-int			ft_circlst_swap(t_lstcirc **lst_top);
+int			ft_circlst_swap(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_swap2(t_lstcirc **lst_top_1, t_lstcirc **lst_top_2);
-int			ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2);
+int			ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2, char *msg);
 /*circlst_tools.c*/
 int			ft_circlst_len(t_lstcirc *lst_top);
-int			ft_is_sorted(t_lstcirc **lst, int len);
+int			ft_is_sorted(t_lstcirc *lst, int len);
 /*parsing.c*/
 int			ft_parsing(int ac, char **av, t_lstcirc **lst);
 int			ft_parse_index_table(t_2int *tab, int len_tab);
 /*piles_op_optimisation.c*/
-void		ft_piles_init(t_piles_state *piles);
-int			ft_pile_add_op(t_piles_state piles, int op_id);
+void		ft_piles_and_tab_init(t_piles_state *piles, char *tab_op[11]);
+void		ft_piles_add_op(t_piles_state *piles, int op_id);
+void		ft_piles_add_3_op(t_piles_state *piles, int op1, int op2, int op3);
+void		ft_piles_print_op(t_piles_state *piles, char *tab_op[11]);
 /*piles_op_optimisation_bis.c*/
-int			ft_piles_do_all_operations(t_piles_state piles);
+void		ft_piles_do_one_operation(t_piles_state *piles, int op_id);
+void		ft_piles_do_all_operations(t_piles_state *piles);
 /*sorting.c*/
 void		ft_pile_sort(t_lstcirc **la, t_lstcirc **lb, int pivot);
 

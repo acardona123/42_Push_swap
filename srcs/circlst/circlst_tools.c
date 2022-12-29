@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:25:33 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 20:58:20 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:08:23 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_circlst_len(t_lstcirc *lst_top)
 }
 
 /*Return 1 if the first n elements of the pile are sorted and 0 if not*/
-int	ft_is_sorted(t_lstcirc **lst, int len)
+int	ft_is_sorted(t_lstcirc *lst, int len)
 {
 	t_lstcirc	*elem;
 	int			i;
@@ -40,10 +40,10 @@ int	ft_is_sorted(t_lstcirc **lst, int len)
 	if (!lst)
 		return (0);
 	i = 0;
-	elem = *lst;
+	elem = lst;
 	if (!(elem->down))
 		return (1);
-	while (i < len && elem->down != *lst)
+	while (i < len && elem->down != lst)
 	{
 		if (elem->index > elem->down->index)
 			return (0);

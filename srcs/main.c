@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:56:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/27 21:11:03 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:25:50 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 int	main(int ac, char **av)
 {
 	t_piles_state	piles;
+	char			*tab_op[11];
 
-	piles.pa = 0;
-	piles.pb = 0;
-	piles.opa = 0;
-	piles.opb = 0;
+	ft_piles_and_tab_init(&piles, tab_op);
 	if (ac < 3)
 	{
 		write(1, "Nb d'arguments incorrect.\n", 26);

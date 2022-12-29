@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:51:40 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 00:39:58 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/28 15:53:32 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 pa <=> ...push(A,B)
 pb <=> ...push(B,A)
 */
-int	ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2)
+int	ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2, char *msg)
 {
 	t_lstcirc	*elem;
 
 	elem = 0;
 	if (!(lst1 && lst2))
 		return (1);
+	if (msg)
+		ft_putendl_fd(msg, 1);
 	if (!(*lst2))
 		return (0);
 	elem = *lst2;
@@ -44,12 +46,14 @@ int	ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2)
 }
 
 /*Swap the top 2 elemtents of the list initiated by lst_top*/
-int	ft_circlst_swap(t_lstcirc **lst_top)
+int	ft_circlst_swap(t_lstcirc **lst_top, char *msg)
 {
 	t_lstcirc	*tmp;
 
 	if (!lst_top)
 		return (1);
+	if (msg)
+		ft_putendl_fd(msg, 1);
 	if (!(*lst_top) || !((*lst_top)->up))
 		return (0);
 	if ((*lst_top)->up->up == (*lst_top))
@@ -75,8 +79,9 @@ int	ft_circlst_swap2(t_lstcirc **lst_top_1, t_lstcirc **lst_top_2)
 {
 	int	i;
 
+	ft_putendl_fd("ss", 1);
 	i = 0;
-	i += ft_circlst_swap(lst_top_1);
-	i += ft_circlst_swap(lst_top_2);
+	i += ft_circlst_swap(lst_top_1, 0);
+	i += ft_circlst_swap(lst_top_2, 0);
 	return (i);
 }

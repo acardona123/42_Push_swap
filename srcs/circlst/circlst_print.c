@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:09:18 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 11:30:42 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:17:03 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2)
 	t_lstcirc	*elem1;
 	t_lstcirc	*elem2;
 
-	ft_putendl_fd(msg, 1);
+	if (msg)
+		ft_putendl_fd(msg, 1);
 	elem1 = 0;
 	elem2 = 0;
 	if (lst1)
