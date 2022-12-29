@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:23:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 00:50:38 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/29 20:46:37 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,30 @@ int	ft_cirlst_clear(t_lstcirc **lst)
 			free(*lst);
 			(*lst) = tmp;
 		}
+	}
+	return (0);
+}
+
+/*Remove the top element of the list*/
+int	ft_cirlst_rm1(t_lstcirc **lst)
+{
+	t_lstcirc	*tmp;
+
+	tmp = *lst;
+	if ((*lst)->up)
+	{
+		if ((*lst)->down->down == *lst)
+		{
+			(*lst)->down->down = 0;
+			(*lst)->down->up = 0;
+		}
+		else
+		{
+			(*lst)->up->down = (*lst)->down;
+			(*lst)->down->up = (*lst)->up;
+		}
+		*lst = (*lst)->down;
+		free(tmp);
 	}
 	return (0);
 }

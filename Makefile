@@ -11,8 +11,8 @@ C_RSC			=	indexation_fusion_sort \
 					parsing \
 					piles_op_optimisation \
 					piles_op_optimisation_bis \
-					sorting 
-#					main 
+					sorting \
+					main 
 					
 			
 C_SRC_ALL		=	$(addprefix circlst/, $(C_SRC_CIRCLST)) $(C_RSC)
@@ -21,7 +21,7 @@ C_FILES			=	$(addprefix srcs/, $(addsuffix .c, $(C_SRC_ALL)))
 O_FILES			= $(C_FILES:.c=.o)
 O_FILES_DEBUG	= $(C_FILES:.c=_debug.o)
 
-C_TEST 			=	test_op_optimisation
+C_TEST 			=	
 C_FILES_TEST	=	$(addsuffix .c, $(addprefix test/, $(C_TEST)))
 O_TEST			=	$(C_FILES_TEST:.c=.o)
 
@@ -37,7 +37,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 %.o : %.c $(LIB_DIR)$(LIB_NAME) $(INCLUDE)
-	$(CC) -c $< -o $@
+	$(CC) -g -c $< -o $@
 
 $(NAME) : $(O_FILES) $(O_TEST) $(LIB_DIR)$(LIB_NAME)
 	$(CC) $(C_FLAGS) $(C_FLAGS) $(O_FILES) $(O_TEST) $(LIB_INCLUDE) -o $(NAME)

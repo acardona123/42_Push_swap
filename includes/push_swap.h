@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/29 00:52:29 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/29 21:08:25 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,13 @@ typedef struct s_2int
 	unsigned int	index;
 }	t_2int;
 
-typedef struct s_pile_op
-{
-	int					op;
-	struct s_pile_op	*next;
-}	t_pile_op;
-
 typedef struct s_piles_state
 {
 	t_lstcirc	*pa;
 	t_lstcirc	*pb;
-	t_pile_op	*opa;
-	t_pile_op	*opb;
+	t_lstcirc	*opa;
+	t_lstcirc	*opb;
+	t_lstcirc	*opall;
 }	t_piles_state;
 
 /*circlst_building.c*/
@@ -50,6 +45,7 @@ t_lstcirc	*ft_circlst_new_elem(int nb, unsigned int index);
 int			ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem);
 int			ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem);
 int			ft_cirlst_clear(t_lstcirc **lst);
+int			ft_cirlst_rm1(t_lstcirc **lst);
 /*circlst_print.c*/
 void		ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2);
 /*circlst_rotate.c*/
@@ -69,13 +65,14 @@ int			ft_parsing(int ac, char **av, t_lstcirc **lst);
 int			ft_parse_index_table(t_2int *tab, int len_tab);
 /*piles_op_optimisation.c*/
 void		ft_piles_and_tab_init(t_piles_state *piles, char *tab_op[11]);
-void		ft_piles_add_op(t_piles_state *piles, int op_id);
-void		ft_piles_add_3_op(t_piles_state *piles, int op1, int op2, int op3);
-void		ft_piles_print_op(t_piles_state *piles, char *tab_op[11]);
-/*piles_op_optimisation_bis.c*/
 void		ft_piles_do_one_operation(t_piles_state *piles, int op_id);
-void		ft_piles_do_all_operations(t_piles_state *piles);
+int			ft_piles_add_op_to(t_piles_state *piles, t_lstcirc	**l_op, int op);
+int			ft_piles_add_op(t_piles_state *piles, int op_id);
+int			ft_piles_add_3_op(t_piles_state *piles, int op1, int op2, int op3);
+void		ft_piles_print_op(t_piles_state piles, char *tab_op[11]);
+/*piles_op_optimisation_bis.c*/
+void		ft_piles_merge_all_operations(t_piles_state *piles);
 /*sorting.c*/
-void		ft_pile_sort(t_lstcirc **la, t_lstcirc **lb, int pivot);
+void		ft_sort(t_piles_state *piles, int len, int pivot_a);
 
 #endif
