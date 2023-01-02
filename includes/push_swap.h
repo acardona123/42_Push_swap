@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/30 17:39:03 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:14:43 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_piles_state
 	t_lstcirc	*opa;
 	t_lstcirc	*opb;
 	t_lstcirc	*opall;
+	char		init;
 }	t_piles_state;
 
 /*circlst_building.c*/
