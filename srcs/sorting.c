@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/02 19:25:59 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 22:08:43 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 
 /*Pivot made in la;
 separate the len first elements of la:
-(Pivot = median inf =>) push the len/2+len%2  elem <= pivot toward lb .*/
+(Pivot = median inf =>) push the len/2  elem < pivot toward lb .*/
 void	fts_pivot_a(t_piles_state *piles, int len, int pivot)
 {
 	int	cpt_push;
 	int	cpt_rot;
 
 	//printf("\e[32m====\nPIVOT A :\n");//
-	//printf("Pivot : %d\n", pivot);//
-	//ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
-	cpt_push = len / 2 + len % 2;
+	// printf("Pivot : %d\n", pivot);//
+	// ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
+	cpt_push = len / 2;
 	cpt_rot = 0;
 	while (cpt_push > 0)
 	{
-		if (((*piles).pa)->index > pivot)
+		if (((*piles).pa)->index >= pivot)
 		{
 			ft_piles_add_op(piles, 2);
+			// ft_circlst_printduo("  ra :", &((*piles).pa), &((*piles).pb));//
 			cpt_rot++;
 			//usleep(50000);//
 		}
 		else
 		{
 			ft_piles_add_op(piles, 4);
+
+			// ft_circlst_printduo("  pb :", &((*piles).pa), &((*piles).pb));//
 			cpt_push--;
 		}
+		// sleep(1);//
 	}
 	while (!(piles->init) && cpt_rot > 0)
 	{
@@ -50,7 +54,7 @@ void	fts_pivot_a(t_piles_state *piles, int len, int pivot)
 }
 
 /*Pivot made in lb;
-keep len/2+len%2 elem <=pivot dans lb.*/
+keep len/2 elem < pivot dans lb.*/
 void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 {
 	int	cpt_push;
@@ -58,14 +62,14 @@ void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 
 	// printf("\e[34m====\nPIVOT B :\n");//
 	piles->init = 0;
-	cpt_push = len / 2;
+	cpt_push = len / 2 + len % 2;
 	cpt_rot = 0;
 	//printf("Pivot : %d\nlen : len", pivot_b);//
 	//ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
 	while (cpt_push > 0)
 	{
 		//printf("boucle, cpt_push = %d\n", cpt_push);
-		if (((*piles).pb)->index <= pivot_b)
+		if (((*piles).pb)->index < pivot_b)
 		{
 			ft_piles_add_op(piles, 6);
 			cpt_rot++;
@@ -179,7 +183,7 @@ void	fts_sort_doubletrio(t_piles_state *piles, int lentot)
 	int	lena;
 	int	lenb;
 
-	lena = lentot / 2 + lentot % 2;
+	lena = lentot / 2 + lentot % 2;//etrange que se soit deja comme ca avant d'inverser le basculement du pivot
 	lenb = lentot / 2;
 	fts_sort_trio_a(piles, lena);
 	fts_sort_trio_b(piles, lenb);
@@ -202,10 +206,10 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 		return ;
 	}
 	fts_pivot_a(piles, len_a, pivot_a);
-	remain_b = len_a / 2 + len_a % 2;
-	len_a = len_a / 2;
-	pivot_b = pivot_a - remain_b / 2;
-	pivot_a = pivot_a + len_a / 2 + len_a % 2;
+	remain_b = len_a / 2;
+	len_a = len_a / 2 + len_a % 2;
+	pivot_b = pivot_a - remain_b / 2 - remain_b % 2;
+	pivot_a = pivot_a + len_a / 2;
 	
 	//sleep(2);
 	ft_sort(piles, len_a, pivot_a);
@@ -215,10 +219,10 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 	{
 		//sleep(1);//
 		fts_pivot_b(piles, remain_b, pivot_b);
-		len_a = remain_b / 2;
-		remain_b = remain_b / 2 + remain_b % 2;
-		pivot_a = pivot_b + len_a / 2 + len_a % 2;
-		pivot_b = pivot_b - remain_b / 2;
+		len_a = remain_b / 2 + remain_b / 2;
+		remain_b = remain_b / 2;
+		pivot_a = pivot_b + len_a / 2;
+		pivot_b = pivot_b - remain_b / 2 - remain_b % 2;
 		ft_sort(piles, len_a, pivot_a);
 	}
 	//printf("\n~~~Fin du sort des sous parties stockees dans b\n");//
