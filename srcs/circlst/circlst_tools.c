@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:25:33 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/28 16:08:23 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:38:34 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,11 @@ int	ft_is_sorted(t_lstcirc *lst, int len)
 		i--;
 	}
 	return (1);
+}
+
+/*Move the first elem of src to the bottom of dest*/
+void	ft_piles_push_bottom(t_lstcirc **lsrc, t_lstcirc **ldest)
+{
+	ft_circlst_push(ldest, lsrc, 0);
+	ft_circlst_rotate(ldest, 0);
 }

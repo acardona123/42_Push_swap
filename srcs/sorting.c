@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/02 17:41:35 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:25:59 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	fts_pivot_a(t_piles_state *piles, int len, int pivot)
 			cpt_push--;
 		}
 	}
-	while (cpt_rot > 0)
+	while (!(piles->init) && cpt_rot > 0)
 	{
 		ft_piles_add_op(piles, 3);
 		cpt_rot--;
@@ -57,6 +57,7 @@ void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 	int	cpt_rot;
 
 	// printf("\e[34m====\nPIVOT B :\n");//
+	piles->init = 0;
 	cpt_push = len / 2;
 	cpt_rot = 0;
 	//printf("Pivot : %d\nlen : len", pivot_b);//

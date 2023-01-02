@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:08:29 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/02 17:30:28 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:24:53 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_piles_and_tab_init(t_piles_state *piles, char *tab_op[11])
 	piles->opa = 0;
 	piles->opb = 0;
 	piles->opall = 0;
+	piles->init = 1;
 	tab_op[0] = "pa";
 	tab_op[1] = "sa";
 	tab_op[2] = "ra";
