@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 23:43:37 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/29 21:02:33 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:25:30 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,19 @@ void	ft_piles_merge_all_operations(t_piles_state *piles)
 	// ft_circlst_printduo("opall", &(piles->opall), 0);//
 	while (piles->opa && piles->opb)
 	{
+		// ft_circlst_printduo ("\e[0mMERGE\nopa et opb :", &piles->opa, &piles->opb);//
+		// ft_circlst_printduo ("opall :", &piles->opall, 0);//
 		if (piles->opa->value + 4 == piles->opb->value)
 		{
+			// ft_printf("boucle1\n");
 			ft_piles_add_op_to(piles, &(piles->opall), piles->opb->value + 3);
+			// ft_printf("arrive ici :\n\tFirst opa = %d\n\tFirst opb = %d\n", piles->opa->value, piles->opb->value);//
 			ft_cirlst_rm1(&(piles->opa));
 			ft_cirlst_rm1(&(piles->opb));
 		}
 		else
 		{
+			// ft_printf("boucle2\n");
 			len_match_a = fts_piles_dist_match(piles, piles->opa->value);
 			len_match_b = fts_piles_dist_match(piles, piles->opb->value);
 			if (len_match_a > len_match_b)
@@ -110,7 +115,9 @@ void	ft_piles_merge_all_operations(t_piles_state *piles)
 			else
 				fts_piles_move(&(piles->opb), &(piles->opall));
 		}
+		// sleep(1);//
 	}
+	// ft_printf("Sortie de boucle\n");
 	// ft_circlst_printduo("Merge :", &(piles->opa), &(piles->opall));//
 	while (piles->opa)
 		fts_piles_move(&(piles->opa), &(piles->opall));

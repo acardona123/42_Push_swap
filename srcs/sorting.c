@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/29 21:05:20 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:41:35 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@ void	fts_pivot_a(t_piles_state *piles, int len, int pivot)
 	int	cpt_push;
 	int	cpt_rot;
 
-	// printf("\e[32m====\nPIVOT A :\n");//
-	cpt_push = len / 2;
+	//printf("\e[32m====\nPIVOT A :\n");//
+	//printf("Pivot : %d\n", pivot);//
+	//ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
+	cpt_push = len / 2 + len % 2;
 	cpt_rot = 0;
 	while (cpt_push > 0)
 	{
-		// printf("Pivot : %d\n   Index 1er : %d\n", pivot, ((*piles).pa)->index);//
 		if (((*piles).pa)->index > pivot)
 		{
-			ft_piles_do_one_operation(piles, 2);
+			ft_piles_add_op(piles, 2);
 			cpt_rot++;
+			//usleep(50000);//
 		}
 		else
 		{
-			ft_piles_do_one_operation(piles, 4);
+			ft_piles_add_op(piles, 4);
 			cpt_push--;
 		}
-		// ft_circlst_printduo("Situation initiale :", &((*piles).pa), &((*piles).pb));//
-		//sleep(1);//
 	}
 	while (cpt_rot > 0)
 	{
@@ -45,7 +45,8 @@ void	fts_pivot_a(t_piles_state *piles, int len, int pivot)
 		cpt_rot--;
 		//sleep(1);//
 	}
-	// printf("====\e[0m\n");//
+	//ft_circlst_printduo("  Apres pivot :", &((*piles).pa), &((*piles).pb));//
+	//printf("====\e[0m\n");//
 }
 
 /*Pivot made in lb;
@@ -58,21 +59,22 @@ void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 	// printf("\e[34m====\nPIVOT B :\n");//
 	cpt_push = len / 2;
 	cpt_rot = 0;
+	//printf("Pivot : %d\nlen : len", pivot_b);//
+	//ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
 	while (cpt_push > 0)
 	{
-		// printf("Pivot : %d\n   Index 1er : %d\n", pivot_b, ((*piles).pb)->index);//
+		//printf("boucle, cpt_push = %d\n", cpt_push);
 		if (((*piles).pb)->index <= pivot_b)
 		{
-			ft_piles_do_one_operation(piles, 6);
+			ft_piles_add_op(piles, 6);
 			cpt_rot++;
 		}
 		else
 		{
-			ft_piles_do_one_operation(piles, 0);
+			ft_piles_add_op(piles, 0);
 			cpt_push--;
 		}
-		// ft_circlst_printduo("Situation initiale :", &((*piles).pa), &((*piles).pb));//
-		//sleep(1);//
+		//usleep(50000);//
 	}
 	while (cpt_rot)
 	{
@@ -80,40 +82,50 @@ void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 		cpt_rot--;
 		//sleep(1);//
 	}
-	// printf("====\e[0m\n");//
+	//ft_circlst_printduo("  Apres pivot :", &((*piles).pa), &((*piles).pb));//
+	//printf("====\e[0m\n");//
 }
 
 /*pile a : Sort the top 3 elem of the pile a*/
 void	fts_sort_trio_a(t_piles_state *piles, int len)
 {
-	t_lstcirc	*lsta;
 	int			i_max;
 
-	// printf("\e[33m====\nfts_sort_trio_a :\n");//
-	lsta = piles->pa;
-	if (!lsta || ft_is_sorted(lsta, len))
+	//printf("\e[47m====\nfts_sort_trio_a :\nlen = %d\n", len);//
+	if (!piles->pa || ft_is_sorted(piles->pa, len))
 		return ;
 	if (len == 2)
 	{
-		if (lsta->index > lsta->down->value)
+		if (piles->pa->index > piles->pa->down->index)
 			ft_piles_add_op(piles, 1);
+		//printf("Simple duo\n");
+		//ft_circlst_printduo("Apres tri trio a :", &(piles->pa), &(piles->pb));//
+		//printf("====\e[0m\n");//
 		return ;
 	}	
-	i_max = (int)(((size_t)lsta->index + lsta->down->index
-				+ lsta->down->down->index) / 3) + 1;
-	if (lsta->index == i_max || lsta->down->index == i_max)
+	i_max = (int)(((size_t)piles->pa->index + piles->pa->down->index
+				+ piles->pa->down->down->index) / 3) + 1;
+	//printf("imax = %d\n", i_max);
+	//ft_circlst_printduo("Avant tri trio a :", &(piles->pa), &(piles->pb));
+	if (piles->pa->index == i_max || piles->pa->down->index == i_max)
 	{
-		if (lsta->index == i_max)
+		if (piles->pa->index == i_max)
 			ft_piles_add_op(piles, 1);
+		//ft_circlst_printduo("Pendant trio 1 :", &(piles->pa), &(piles->pb));
 		ft_piles_add_3_op(piles, 2, 1, 3);
-		if (lsta->index != i_max - 2)
+		//ft_circlst_printduo("Pendant trio 2 :", &(piles->pa), &(piles->pb));
+		if (!ft_is_sorted(piles->pa, 3))
+		{
+			// ft_printf("piles->pa->index = %d  et i_max - 2 = %d\n", piles->pa->index,  i_max - 2);
 			ft_piles_add_op(piles, 1);
+		}
+			
 	}
 	else
 		ft_piles_add_op(piles, 1);
-	// ft_circlst_printduo("Situation initiale :", &(piles->pa), &(piles->pb));
-	// printf("====\e[0m\n");//
-	//sleep(1);//
+	//ft_circlst_printduo("Apres tri trio a :", &(piles->pa), &(piles->pb));
+	//printf("====\e[0m\n");//
+	//sleep(3);//
 }
 
 /*pile b: send the 3 sorted elem to a (method optimised to created colisions)*/
@@ -121,14 +133,15 @@ void	fts_sort_trio_b(t_piles_state *piles, int len)
 {
 	int			i_max;
 
-	// ft_printf("\e[1;35m====\nfts_sort_trio_b :\n");//
-	// ft_circlst_printduo("Situation initiale :", &(piles->pa), &(piles->pb));//
+	//ft_printf("\e[1;35m====\nfts_sort_trio_b :\nlen = %d\n", len);//
+	//ft_circlst_printduo("Avant tri trio b :", &(piles->pa), &(piles->pb));//
 	if (len == 2)
 	{
 		ft_piles_add_3_op(piles, 0, 0, -1);
-		// ft_circlst_printduo("Situation initiale :", &(piles->pa), &(piles->pb));//
 		if (piles->pa->index > piles->pa->down->index)
 			ft_piles_add_op(piles, 1);
+		//ft_circlst_printduo("Apres tri trio b :", &(piles->pa), &(piles->pb));//
+		//printf("====\e[0m\n");//
 		return ;
 	}
 	i_max = (int)(((size_t)piles->pb->index + piles->pb->down->index
@@ -147,15 +160,15 @@ void	fts_sort_trio_b(t_piles_state *piles, int len)
 		if (piles->pb->index == i_max - 1)
 			ft_piles_add_3_op(piles, 0, 7, 0);
 		else
-			ft_piles_add_3_op(piles, 7, 7, 0);
+			ft_piles_add_3_op(piles, 7, 0, 0);
 	}
 	else
 	{
 		ft_piles_add_3_op(piles, 5, 0, 5);
 		ft_piles_add_3_op(piles, 0, 0, -1);
 	}
-	// ft_circlst_printduo("Situation initiale :", &(piles->pa), &(piles->pb));
-	// printf("====\e[0m\n");//
+	//ft_circlst_printduo("Apres tri trio b :", &(piles->pa), &(piles->pb));//
+	//printf("====\e[0m\n");//
 	//sleep(1);//
 }
 
@@ -177,8 +190,8 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 	int	remain_b;
 	int	pivot_b;
 
-	// ft_circlst_printduo("\n~~~~\nNouveau tri :", &(piles->pa), &(piles->pb));
-	// ft_printf("len_a = %d   et   pivot_a = %d\n", len_a, pivot_a);
+	//ft_circlst_printduo("\n~~~~\nNouveau tri :", &(piles->pa), &(piles->pb));
+	//ft_printf("len_a = %d   et   pivot_a = %d\n", len_a, pivot_a);
 	//sleep(2);
 	if (ft_is_sorted(piles->pa, len_a))
 		return ;
@@ -195,11 +208,10 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 	
 	//sleep(2);
 	ft_sort(piles, len_a, pivot_a);
-	// printf("\n~~~Fin du sort intermediaire, on va sort les parties envoyees dans b.\n");//
+	//printf("\n~~~Fin du sort intermediaire, on va sort les parties envoyees dans b.\n");//
 	//sleep(2);//
 	while (remain_b > 3)
 	{
-		// printf("\n\e[0;102mICI\e[0m\n\n");//
 		//sleep(1);//
 		fts_pivot_b(piles, remain_b, pivot_b);
 		len_a = remain_b / 2;
@@ -208,9 +220,8 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 		pivot_b = pivot_b - remain_b / 2;
 		ft_sort(piles, len_a, pivot_a);
 	}
-	// printf("\n~~~Fin du sort des sous parties de droite.\n");//
+	//printf("\n~~~Fin du sort des sous parties stockees dans b\n");//
 	//sleep(2);//
 	fts_sort_trio_b(piles, remain_b);
-	// printf("\n~~~Fin du sort du double trio.\n");//
 	//sleep(2);//
 }

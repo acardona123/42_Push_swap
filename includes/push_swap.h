@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/29 21:08:25 by acardona         ###   ########.fr       */
+/*   Updated: 2022/12/30 17:39:03 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		ft_piles_do_one_operation(t_piles_state *piles, int op_id);
 int			ft_piles_add_op_to(t_piles_state *piles, t_lstcirc	**l_op, int op);
 int			ft_piles_add_op(t_piles_state *piles, int op_id);
 int			ft_piles_add_3_op(t_piles_state *piles, int op1, int op2, int op3);
-void		ft_piles_print_op(t_piles_state piles, char *tab_op[11]);
+void		ft_piles_print_op(t_piles_state piles, char *tab_op[11], int ab, int talk);
 /*piles_op_optimisation_bis.c*/
 void		ft_piles_merge_all_operations(t_piles_state *piles);
 /*sorting.c*/

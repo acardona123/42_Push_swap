@@ -12,7 +12,7 @@ C_RSC			=	indexation_fusion_sort \
 					piles_op_optimisation \
 					piles_op_optimisation_bis \
 					sorting \
-					main 
+					 main 
 					
 			
 C_SRC_ALL		=	$(addprefix circlst/, $(C_SRC_CIRCLST)) $(C_RSC)

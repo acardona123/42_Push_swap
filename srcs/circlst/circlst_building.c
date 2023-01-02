@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:23:39 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/29 20:46:37 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 17:23:40 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,11 @@ int	ft_cirlst_rm1(t_lstcirc **lst)
 		}
 		*lst = (*lst)->down;
 		free(tmp);
+	}
+	else
+	{
+		free(*lst);
+		*lst = 0;
 	}
 	return (0);
 }
