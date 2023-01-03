@@ -40,7 +40,7 @@ all: $(NAME)
 	$(CC) -g -c $< -o $@
 
 $(NAME) : $(O_FILES) $(O_TEST) $(LIB_DIR)$(LIB_NAME)
-	$(CC) $(C_FLAGS) $(C_FLAGS) $(O_FILES) $(O_TEST) $(LIB_INCLUDE) -o $(NAME)
+	$(CC) $(C_FLAGS) -g $(C_FLAGS) $(O_FILES) $(O_TEST) $(LIB_INCLUDE) -o $(NAME)
 
 $(LIB_DIR)$(LIB_NAME) :
 	@make --no-print-directory -C $(LIB_DIR)

@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:14:53 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/23 17:19:36 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:07:24 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,16 @@ int	ft_parse_index_table(t_2int *tab, int len_tab)
 		return (1);
 	fts_tab_cpy(tab_cpy, tab, len_tab);
 	if (fts_index_fusion(tab_cpy, len_tab) == 0)
+	{
 		return (1);
+		free (tab_cpy);
+	}
 	i = 0;
 	while (i < len_tab)
 	{
 		(tab[(tab_cpy[i]).index]).index = i + 1;
 		i++;
 	}
+	free(tab_cpy);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:29:56 by acardona          #+#    #+#             */
-/*   Updated: 2022/12/24 11:46:10 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:36:25 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	fts_check_number_format(char *str)
 {
+	//verifier que l'on de donne pas plus que le int max ou moins que int min
 	int	i;
 
 	i = 0;
@@ -62,7 +63,10 @@ static int	fts_parse_to_table(int ac, char **av, t_2int	**tab)
 	while (i < ac - 1)
 	{
 		if (fts_check_number_format(av[i +1]))
+		{
+			free(*tab);
 			return (1);
+		}
 		elem.value = ft_atoi(av[i + 1]);
 		elem.index = i;
 		if (elem.value == 0 && fts_check_atoi(av[i + 1]))
@@ -101,7 +105,9 @@ int	ft_parsing(int ac, char **av, t_lstcirc **lst)
 	t_2int	*tab;
 
 	if (fts_parse_to_table(ac, av, &tab))
+	{
 		return (1);
+	}
 	if (ft_parse_index_table(tab, ac -1)
 		|| fts_parse_table_to_lst(tab, ac, lst))
 	{
