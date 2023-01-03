@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/02 19:25:59 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/02 22:31:13 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	fts_pivot_b(t_piles_state *piles, int len, int pivot_b)
 
 	// printf("\e[34m====\nPIVOT B :\n");//
 	piles->init = 0;
-	cpt_push = len / 2;
+	cpt_push = len / 2 + len % 2;
 	cpt_rot = 0;
 	//printf("Pivot : %d\nlen : len", pivot_b);//
 	//ft_circlst_printduo("  Avant pivot :", &((*piles).pa), &((*piles).pb));//
 	while (cpt_push > 0)
 	{
 		//printf("boucle, cpt_push = %d\n", cpt_push);
-		if (((*piles).pb)->index <= pivot_b)
+		if (((*piles).pb)->index < pivot_b)
 		{
 			ft_piles_add_op(piles, 6);
 			cpt_rot++;
@@ -215,8 +215,8 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 	{
 		//sleep(1);//
 		fts_pivot_b(piles, remain_b, pivot_b);
-		len_a = remain_b / 2;
-		remain_b = remain_b / 2 + remain_b % 2;
+		len_a = remain_b / 2 + remain_b % 2;
+		remain_b = remain_b / 2;
 		pivot_a = pivot_b + len_a / 2 + len_a % 2;
 		pivot_b = pivot_b - remain_b / 2;
 		ft_sort(piles, len_a, pivot_a);
