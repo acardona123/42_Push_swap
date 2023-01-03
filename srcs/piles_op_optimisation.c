@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:08:29 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/02 19:24:53 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:07:25 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int	ft_piles_add_op(t_piles_state *piles, int op_id)
 		return (1);
 	}
 	ft_circlst_addabove(l_op, new);
+	ft_piles_delete_consecutive_op_all(piles);
 	return (0);
 }
 
