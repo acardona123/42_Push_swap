@@ -22,8 +22,7 @@ echo -e "Limit = $LIM\n"
 echo "Calcul en cours..."
 
 for i in $(seq 1 $ITER); do
-	./randomizer.sh $MIN $MAX > random.txt
-	VAL=$( ./push_swap $(<random.txt)| wc -l)
+	VAL=$( ./push_swap $(./randomizer.sh $MIN $MAX)| wc -l)
 #	echo "  Val($i) = $VAL"
 	MOY=`expr $MOY + $VAL`
 	if [ $VAL -gt $LIM ];
@@ -46,7 +45,6 @@ for i in $(seq 1 $ITER); do
 	fi
 done
 
-rm random.txt
 MOY=`expr $MOY / $ITER`
 
 echo -e "\n======================\n\n\e[30;1mCONCLUSION :\e[0m\n"

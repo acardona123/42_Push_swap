@@ -5,13 +5,13 @@ void ft_print_table(t_2int *tab, int len_tab)
 	int i;
 
 	i = 0;
-	printf("Tableau :\n");
+	ft_printf("Tableau :\n");
 	while (i < len_tab)
 	{
-		printf("\tValeur :%d,\t indexe :%d\n", tab[i].value, tab[i].index);
+		ft_printf("\tValeur :%d,\t indexe :%d\n", tab[i].value, tab[i].index);
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 int main()
@@ -21,7 +21,7 @@ int main()
 	tab = malloc(4 * sizeof(t_2int));
 	if (!tab)
 	{
-		write(1, "Erreur malloc",1);
+		write(1, "Erreur malloc\n", 14);
 		return (1);
 	}
 	tab[0].value = 40;
@@ -37,7 +37,7 @@ int main()
 
 	ft_print_table(tab, 5);
 	ft_parse_index_table(tab, 5);
-	printf("\n\n==========\n");
+	ft_printf("\n\n==========\n");
 	ft_print_table(tab, 5);
 	return 0;
 }
