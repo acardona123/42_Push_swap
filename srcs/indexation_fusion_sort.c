@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 18:14:53 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/03 19:07:24 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:57:55 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ t_2int	*fts_index_fusion(t_2int *tab, int lentab)
 	return (tab);
 }
 
+/*Index the elements of tab according to their rank in the final sorted list*/
 int	ft_parse_index_table(t_2int *tab, int len_tab)
 {
 	int		i;

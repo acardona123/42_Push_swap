@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   checker_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 17:31:56 by acardona         ###   ########.fr       */
+/*   Created: 2023/01/09 21:03:35 by acardona          #+#    #+#             */
+/*   Updated: 2023/01/09 23:04:47 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libftprintf/ft_printf.h"
-# include "gnl/get_next_line.h"
+#ifndef CHECKER_BONUS_H
+# define CHECKER_BONUS_H
+# include <unistd.h>
 # include <stdlib.h>
+# include "../includes/gnl/get_next_line.h"
 
 typedef struct s_lstcirc
 {
@@ -40,24 +40,22 @@ typedef struct s_piles_state
 	char		init;
 }	t_piles_state;
 
-/*circlst_building.c*/
+/*../srcs/circlst/circlst_building_bonus.c*/
 t_lstcirc	*ft_circlst_new_elem(int nb, unsigned int index);
 int			ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem);
 int			ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem);
 int			ft_cirlst_clear(t_lstcirc **lst);
 int			ft_cirlst_rm1(t_lstcirc **lst);
-/*circlst_print.c*/
-void		ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2);
-/*circlst_rotate.c*/
+/*../srcs/circlst/circlst_rotate_bonus.c*/
 int			ft_circlst_rotate(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
 int			ft_circlst_rev_rotate(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_rev_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2);
-/*circlst_swap_push.c*/
+/*../srcs/circlst/circlst_swap_push_bonus.c*/
 int			ft_circlst_swap(t_lstcirc **lst_top, char *msg);
 int			ft_circlst_swap2(t_lstcirc **lst_top_1, t_lstcirc **lst_top_2);
 int			ft_circlst_push(t_lstcirc **lst1, t_lstcirc **lst2, char *msg);
-/*circlst_tools.c*/
+/*../srcs/circlst/circlst_tools_bonus.c*/
 int			ft_circlst_len(t_lstcirc *lst_top);
 int			ft_is_sorted(t_lstcirc *lst, int len);
 void		ft_piles_push_bottom(t_lstcirc **lsrc, t_lstcirc **ldest);
@@ -68,24 +66,11 @@ int			ft_parse_index_table(t_2int *tab, int len_tab);
 int			ft_check_int_format(char *str);
 int			ft_check_atoi(char *str);
 int			ft_check_double(t_2int **tab, int i_tab, int n);
-/*piles_op_optimisation.c*/
-void		ft_piles_and_tab_init(t_piles_state *piles, char *tab_op[11]);
+/*piles_op_optimisation_bonus.c*/
+void		ft_piles_init(t_piles_state *piles);
 void		ft_piles_do_one_operation(t_piles_state *piles, int op_id);
-int			ft_piles_add_op_to(t_piles_state *piles, t_lstcirc	**l_op, int op);
-int			ft_piles_add_op(t_piles_state *piles, int op_id);
-int			ft_piles_add_3_op(t_piles_state *piles, int op1, int op2, int op3);
-/*piles_op_optimisation_bis.c*/
-void		ft_piles_delete_consecutive_op_one(t_lstcirc **oplst);
-void		ft_piles_delete_consecutive_op_all(t_piles_state *piles);
-/*piles_op_optimisation_tris.c*/
-void		ft_piles_print_op(t_piles_state piles, char *t_op[11]);
-void		ft_piles_merge_all_operations(t_piles_state *piles);
 void		ft_piles_clear(t_piles_state *piles);
-/*sorting_mainc.c*/
-void		ft_sort(t_piles_state *piles, int len, int pivot_a);
-void		ft_sort_lst3(t_piles_state *piles);
-/*sorting_pivots.c*/
-void		ft_pivot_a(t_piles_state *pil, int len, int piv);
-void		ft_pivot_b(t_piles_state *piles, int len, int pivot_b);
-
+/*checker_bonus.c*/
+/*tools_bonus.c*/
+int			ft_strdiff(char *str1, char *str2);
 #endif

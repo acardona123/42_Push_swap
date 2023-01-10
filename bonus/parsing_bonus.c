@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:29:56 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/09 22:53:35 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:58:16 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	ft_parsing(int ac, char **av, t_lstcirc **lst)
 	{
 		return (1);
 	}
-	if (ft_parse_index_table(tab, ac -1)
-		|| fts_parse_table_to_lst(tab, ac, lst))
+	if (fts_parse_table_to_lst(tab, ac, lst))
 	{
 		free(tab);
 		return (1);

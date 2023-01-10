@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 22:05:45 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:38:12 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,23 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 		ft_sort(piles, len_a, pivot_a);
 	}
 	fts_sort_trio_b(piles, remain_b);
+}
+
+void	ft_sort_lst3(t_piles_state *piles)
+{
+	if (ft_circlst_len(piles->pa) == 2 && piles->pa->value != 1)
+		ft_piles_add_op(piles, 1);
+	else
+	{
+		if (piles->pa->index == 1 && piles->pa->down->index == 3)
+			ft_piles_add_3_op(piles, 3, 1, -1);
+		else if (piles->pa->index == 3 && piles->pa->down->index == 1)
+			ft_piles_add_op(piles, 2);
+		else if (piles->pa->index == 3 && piles->pa->down->index == 2)
+			ft_piles_add_3_op(piles, 2, 1, -1);
+		else if (piles->pa->index == 2 && piles->pa->down->index == 1)
+			ft_piles_add_op(piles, 1);
+		else if (piles->pa->index == 2 && piles->pa->down->index == 3)
+			ft_piles_add_op(piles, 3);
+	}
 }
