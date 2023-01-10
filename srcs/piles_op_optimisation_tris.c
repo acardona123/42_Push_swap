@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 21:12:45 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/09 23:04:15 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:43:50 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,11 @@ void	ft_piles_merge_all_operations(t_piles_state *piles)
 }
 
 /*free al the circlst of piles*/
-void	ft_piles_clear(t_piles_state *piles)
+void	ft_piles_free(t_piles_state *piles)
 {
-	ft_cirlst_clear(&(piles->pa));
-	ft_cirlst_clear(&(piles->pb));
-	ft_cirlst_clear(&(piles->opa));
-	ft_cirlst_clear(&(piles->opb));
-	ft_cirlst_clear(&(piles->opall));
+	ft_circlst_free(&(piles->pa));
+	ft_circlst_free(&(piles->pb));
+	ft_circlst_free(&(piles->opa));
+	ft_circlst_free(&(piles->opb));
+	ft_circlst_free(&(piles->opall));
 }

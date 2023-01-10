@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 21:03:35 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/09 23:04:47 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:45:08 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../includes/gnl/get_next_line.h"
+# include "../includes/libftprintf/ft_printf.h"
 
 typedef struct s_lstcirc
 {
@@ -44,7 +45,7 @@ typedef struct s_piles_state
 t_lstcirc	*ft_circlst_new_elem(int nb, unsigned int index);
 int			ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem);
 int			ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem);
-int			ft_cirlst_clear(t_lstcirc **lst);
+int			ft_circlst_free(t_lstcirc **lst);
 int			ft_cirlst_rm1(t_lstcirc **lst);
 /*../srcs/circlst/circlst_rotate_bonus.c*/
 int			ft_circlst_rotate(t_lstcirc **lst_top, char *msg);
@@ -68,9 +69,12 @@ int			ft_check_atoi(char *str);
 int			ft_check_double(t_2int **tab, int i_tab, int n);
 /*piles_op_optimisation_bonus.c*/
 void		ft_piles_init(t_piles_state *piles);
+int			ft_piles_add_op_to(t_lstcirc **l_op, int op);
 void		ft_piles_do_one_operation(t_piles_state *piles, int op_id);
-void		ft_piles_clear(t_piles_state *piles);
+void		ft_piles_op_do_all_op(t_piles_state *piles);
+void		ft_piles_free(t_piles_state *piles);
 /*checker_bonus.c*/
 /*tools_bonus.c*/
 int			ft_strdiff(char *str1, char *str2);
+
 #endif

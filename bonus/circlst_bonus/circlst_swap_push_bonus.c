@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circlst_swap_push.c                                :+:      :+:    :+:   */
+/*   circlst_swap_push_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 14:51:40 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 18:16:45 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:50:18 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ int	ft_circlst_swap2(t_lstcirc **lst_top_1, t_lstcirc **lst_top_2)
 {
 	int	i;
 
-	ft_putendl_fd("ss", 1);
 	i = 0;
 	i += ft_circlst_swap(lst_top_1, 0);
 	i += ft_circlst_swap(lst_top_2, 0);

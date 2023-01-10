@@ -18,6 +18,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_circlst_printduo("", &top_elemA, &top_elemB);
-	ft_cirlst_clear(&top_elemA);
+	ft_circlst_free(&top_elemA);
 	return (0);
 }

@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 		ft_circlst_rev_rotate2(&top_a, &top_b);
 		ft_circlst_printduo("rrr", &top_a, &top_b);
 	}
-	ft_cirlst_clear(&top_a);
-	ft_cirlst_clear(&top_b);
+	ft_circlst_free(&top_a);
+	ft_circlst_free(&top_b);
 	return (0);
 }

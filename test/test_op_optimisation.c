@@ -134,10 +134,10 @@ int	main(int ac, char **av)
 		ft_piles_print_op_long(piles, tab_op, 1, 1);
 	}
 
-	ft_cirlst_clear(&(piles.pa));
-	ft_cirlst_clear(&(piles.pb));
-	ft_cirlst_clear(&(piles.opa));
-	ft_cirlst_clear(&(piles.opb));
-	ft_cirlst_clear(&(piles.opall));
+	ft_circlst_free(&(piles.pa));
+	ft_circlst_free(&(piles.pb));
+	ft_circlst_free(&(piles.opa));
+	ft_circlst_free(&(piles.opb));
+	ft_circlst_free(&(piles.opall));
 	return (0);
 }

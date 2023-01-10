@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools_bonus.c                                      :+:      :+:    :+:   */
+/*   ft_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 20:56:45 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 19:40:50 by acardona         ###   ########.fr       */
+/*   Created: 2023/01/10 18:38:01 by acardona          #+#    #+#             */
+/*   Updated: 2023/01/10 18:51:03 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strdiff(char *str1, char *str2)
+#include "libft.h"
+
+void	ft_split_free(char **tab)
 {
-	if ((!str1 && str2) || (str1 && !str2))
-		return (1);
-	while (*str1 && *str2)
-	{
-		if (*str1 != *str2)
-			return (1);
-		str1++;
-		str2++;
-	}
-	if (*str1 != *str2)
-		return (1);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
+
+int	ft_split_len(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
 }

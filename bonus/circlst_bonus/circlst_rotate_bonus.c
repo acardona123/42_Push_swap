@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   circlst_rotate.c                                   :+:      :+:    :+:   */
+/*   circlst_rotate_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:00:07 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 18:23:47 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:50:08 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_circlst_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2)
 {
 	int	i;
 
-	ft_putendl_fd("rr", 1);
 	i = 0;
 	i += ft_circlst_rotate(lst_top1, 0);
 	i += ft_circlst_rotate(lst_top2, 0);
@@ -55,7 +54,6 @@ int	ft_circlst_rev_rotate2(t_lstcirc **lst_top1, t_lstcirc **lst_top2)
 {
 	int	i;
 
-	ft_putendl_fd("rrr", 1);
 	i = 0;
 	i += ft_circlst_rev_rotate(lst_top1, 0);
 	i += ft_circlst_rev_rotate(lst_top2, 0);

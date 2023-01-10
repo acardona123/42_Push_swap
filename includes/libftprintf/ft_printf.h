@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:38:20 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 18:11:23 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:51:49 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 char		**ft_split(char const *s, char c);
+void		ft_split_free(char **tab);
+int			ft_split_len(char **tab);
 /*libft bonus :*/
 t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *newelem);

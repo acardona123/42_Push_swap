@@ -6,11 +6,11 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:08:29 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/09 23:04:21 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:57:18 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "checker_bonus.h"
 
 /*Init the struct containing 2 piles, their op lists. Init tab_op for display*/
 void	ft_piles_init(t_piles_state *piles)
@@ -21,6 +21,18 @@ void	ft_piles_init(t_piles_state *piles)
 	piles->opb = 0;
 	piles->opall = 0;
 	piles->init = 2;
+}
+
+/*add the operation to the pile(s) of operation corresponding*/
+int	ft_piles_add_op_to(t_lstcirc **l_op, int op)
+{
+	t_lstcirc	*new;
+
+	new = ft_circlst_new_elem(op, 0);
+	if (!new)
+		return (1);
+	ft_circlst_addabove(l_op, new);
+	return (0);
 }
 
 /*Do one operation and remove it from the operation list*/
@@ -50,12 +62,30 @@ void	ft_piles_do_one_operation(t_piles_state *piles, int op_id)
 		ft_circlst_rev_rotate2(&(piles->pa), &(piles->pb));
 }
 
-/*free al the circlst of piles*/
-void	ft_piles_clear(t_piles_state *piles)
+/*Do all the operations of opall*/
+void	ft_piles_op_do_all_op(t_piles_state *piles)
 {
-	ft_cirlst_clear(&(piles->pa));
-	ft_cirlst_clear(&(piles->pb));
-	ft_cirlst_clear(&(piles->opa));
-	ft_cirlst_clear(&(piles->opb));
-	ft_cirlst_clear(&(piles->opall));
+	t_lstcirc	*elem;
+
+	if (piles->opall)
+	{
+		elem = piles->opall;
+		ft_piles_do_one_operation(piles, elem->value);
+		elem = elem->down;
+		while (elem && elem != piles->opall)
+		{
+			ft_piles_do_one_operation(piles, elem->value);
+			elem = elem->down;
+		}
+	}
+}
+
+/*free al the circlst of piles*/
+void	ft_piles_free(t_piles_state *piles)
+{
+	ft_circlst_free(&(piles->pa));
+	ft_circlst_free(&(piles->pb));
+	ft_circlst_free(&(piles->opa));
+	ft_circlst_free(&(piles->opb));
+	ft_circlst_free(&(piles->opall));
 }

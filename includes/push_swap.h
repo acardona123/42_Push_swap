@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 13:46:58 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 17:31:56 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:30:54 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_piles_state
 t_lstcirc	*ft_circlst_new_elem(int nb, unsigned int index);
 int			ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem);
 int			ft_circlst_addabove(t_lstcirc **lst_origin, t_lstcirc *new_elem);
-int			ft_cirlst_clear(t_lstcirc **lst);
+int			ft_circlst_free(t_lstcirc **lst);
 int			ft_cirlst_rm1(t_lstcirc **lst);
 /*circlst_print.c*/
 void		ft_circlst_printduo(char *msg, t_lstcirc **lst1, t_lstcirc **lst2);
@@ -80,7 +80,7 @@ void		ft_piles_delete_consecutive_op_all(t_piles_state *piles);
 /*piles_op_optimisation_tris.c*/
 void		ft_piles_print_op(t_piles_state piles, char *t_op[11]);
 void		ft_piles_merge_all_operations(t_piles_state *piles);
-void		ft_piles_clear(t_piles_state *piles);
+void		ft_piles_free(t_piles_state *piles);
 /*sorting_mainc.c*/
 void		ft_sort(t_piles_state *piles, int len, int pivot_a);
 void		ft_sort_lst3(t_piles_state *piles);

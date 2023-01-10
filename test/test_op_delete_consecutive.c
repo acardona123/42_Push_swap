@@ -20,6 +20,6 @@ int main(int ac, char **av)
 	ft_circlst_printduo("Init :", &piles.opa, 0);
 	ft_piles_delete_consecutive_op_one(&piles.opa);
 	ft_circlst_printduo("Apres :", &piles.opa, 0);
-	ft_cirlst_clear(&piles.opa);
+	ft_circlst_free(&piles.opa);
 	return (0);
 }

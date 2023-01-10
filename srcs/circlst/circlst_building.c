@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:23:39 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 18:20:57 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:43:50 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	ft_circlst_addtop(t_lstcirc **lst_top, t_lstcirc *new_elem)
 }
 
 /*Free he given list*/
-int	ft_cirlst_clear(t_lstcirc **lst)
+int	ft_circlst_free(t_lstcirc **lst)
 {
 	t_lstcirc	*tmp;
 

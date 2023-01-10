@@ -24,7 +24,7 @@ int main()
 		// 	ft_printf("Bottom (%p):\n -value : %d\n -up : %p\n -down : %p\n\n", elem->up, elem->up->value, elem->up->up, elem->up->down);
 		// }
 		ft_circlst_printduo("", &elem, 0);
-		ft_cirlst_clear(&elem);
+		ft_circlst_free(&elem);
 	}
 	if (1)
 	{
@@ -39,7 +39,7 @@ int main()
 			new = ft_circlst_new_elem(tab[i], i);
 			if (ft_circlst_addabove(&lst_top, new))
 			{
-				ft_cirlst_clear(&lst_top);
+				ft_circlst_free(&lst_top);
 				ft_putstr_fd("/!\\ Pb => liste free", 1);
 				return (1);
 			}
@@ -50,6 +50,6 @@ int main()
 		write(1, "\n-----\n", 7);
 		ft_circlst_printduo("", &lst_top, 0);
 		ft_printf("===\nNombre d'elements : %d\n", ft_circlst_len(lst_top));
-		ft_cirlst_clear(&lst_top);
+		ft_circlst_free(&lst_top);
 	}
 }

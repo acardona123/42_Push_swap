@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_bis.c                                      :+:      :+:    :+:   */
+/*   parsing_bis_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:32:11 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/09 19:44:38 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:48:08 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "checker_bonus.h"
 
 int	ft_check_int_format(char *str)
 {
