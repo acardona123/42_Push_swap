@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:08:29 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/04 21:25:00 by acardona         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:39:18 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,31 +60,6 @@ void	ft_piles_do_one_operation(t_piles_state *piles, int op_id)
 	else if (op_id == 10)
 		ft_circlst_rev_rotate2(&(piles->pa), &(piles->pb));
 }
-// void	ft_piles_do_one_operation(t_piles_state *piles, int op_id)
-// {
-// 	if (op_id == 0)
-// 		ft_circlst_push(&(piles->pa), &(piles->pb), "pa");
-// 	else if (op_id == 1)
-// 		ft_circlst_swap(&(piles->pa), "sa");
-// 	else if (op_id == 2)
-// 		ft_circlst_rotate(&(piles->pa), "ra");
-// 	else if (op_id == 3)
-// 		ft_circlst_rev_rotate(&(piles->pa), "rra");
-// 	else if (op_id == 4)
-// 		ft_circlst_push(&(piles->pb), &(piles->pa), "pb");
-// 	else if (op_id == 5)
-// 		ft_circlst_swap(&(piles->pb), "sb");
-// 	else if (op_id == 6)
-// 		ft_circlst_rotate(&(piles->pb), "rb");
-// 	else if (op_id == 7)
-// 		ft_circlst_rev_rotate(&(piles->pb), "rrb");
-// 	else if (op_id == 8)
-// 		ft_circlst_swap2(&(piles->pa), &(piles->pb));
-// 	else if (op_id == 9)
-// 		ft_circlst_rotate2(&(piles->pa), &(piles->pb));
-// 	else if (op_id == 10)
-// 		ft_circlst_rev_rotate2(&(piles->pa), &(piles->pb));
-// }
 
 /*add the operation to the pile(s) of operation corresponding*/
 int	ft_piles_add_op_to(t_piles_state *piles, t_lstcirc	**l_op, int op)

@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:56:39 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 21:28:57 by acardona         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:25:11 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ static int	fts_set_param(int ac, char **av, char ***arg, int *nb_arg)
 	if (ac == 2)
 	{
 		*arg = ft_split(av[1], ' ');
-		if (!arg)
+		if (!*arg)
 			return (1);
+		if (!**arg && ft_strlen(av[1]))
+		{
+			write(2, "Error\n", 6);
+			return (1);
+		}
 		*nb_arg = ft_split_len(*arg);
 	}
 	else if (ac > 2)
@@ -42,7 +47,7 @@ int	main(int ac, char **av)
 		return (0);
 	ft_piles_and_tab_init(&piles, tab_op);
 	fts_set_param(ac, av, &arg, &nb_arg);
-	if (!arg || (nb_arg > 1 && ft_parsing(nb_arg, arg, &(piles.pa))))
+	if (!arg || (nb_arg >= 1 && ft_parsing(nb_arg, arg, &(piles.pa))))
 		return (write(2, "Error\n", 6), 1);
 	if (nb_arg > 1)
 	{

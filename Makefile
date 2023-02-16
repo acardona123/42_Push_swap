@@ -54,7 +54,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: lib $(NAME)
 	@echo ""
 	@echo "End of compilation"
-	@echo ""
+	@echo "__________________"
 
 %.o : %.c $(LIB_DIR)$(LIB_NAME) $(INCLUDE)
 	$(CC) -g -c $< -o $@
@@ -81,7 +81,7 @@ re : fclean all
 bonus : lib  $(NAME_BONUS)
 	@echo ""
 	@echo "End of compilation"
-	@echo ""
+	@echo "__________________"
 
 $(NAME_BONUS) : $(O_FILES_BONUS)
 	$(CC) $(CFLAGS) -g $(O_FILES_BONUS) $(LIB_INCLUDE) -o $(NAME_BONUS)

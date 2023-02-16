@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:19:42 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 17:38:12 by acardona         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:59:53 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_sort(t_piles_state *piles, int len_a, int pivot_a)
 
 void	ft_sort_lst3(t_piles_state *piles)
 {
-	if (ft_circlst_len(piles->pa) == 2 && piles->pa->value != 1)
+	if (ft_circlst_len(piles->pa) == 2 && piles->pa->index != 1)
 		ft_piles_add_op(piles, 1);
 	else
 	{

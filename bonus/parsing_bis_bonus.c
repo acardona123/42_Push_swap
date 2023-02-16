@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:32:11 by acardona          #+#    #+#             */
-/*   Updated: 2023/01/10 19:48:08 by acardona         ###   ########.fr       */
+/*   Updated: 2023/02/16 20:38:18 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_check_int_format(char *str)
 		i++;
 	if (!str || *str == 0)
 		return (1);
+	while (str[i] == '0')
+		i++;
 	j = 0;
 	while (str[i])
 	{
@@ -43,7 +45,7 @@ int	ft_check_atoi(char *str)
 	if (!str || *str == 0)
 		return (1);
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
 	while (str[i])
 	{
