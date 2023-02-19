@@ -6,7 +6,7 @@
 /*   By: acardona <acardona@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 21:56:39 by acardona          #+#    #+#             */
-/*   Updated: 2023/02/16 20:25:11 by acardona         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:57:43 by acardona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static int	fts_set_param(int ac, char **av, char ***arg, int *nb_arg)
 	return (0);
 }
 
+static void	fts_sub_main(t_piles_state	*piles, int nb_arg, char *tab_op[11])
+{
+	if (ft_circlst_len(piles->pa) <= 3)
+		ft_sort_lst3(piles);
+	else
+		ft_sort(piles, nb_arg, nb_arg / 2 + nb_arg % 2);
+	ft_piles_merge_all_operations(piles);
+	ft_piles_print_op(*piles, tab_op);
+}
+
 int	main(int ac, char **av)
 {
 	t_piles_state	piles;
@@ -48,16 +58,13 @@ int	main(int ac, char **av)
 	ft_piles_and_tab_init(&piles, tab_op);
 	fts_set_param(ac, av, &arg, &nb_arg);
 	if (!arg || (nb_arg >= 1 && ft_parsing(nb_arg, arg, &(piles.pa))))
-		return (write(2, "Error\n", 6), 1);
-	if (nb_arg > 1)
 	{
-		if (ft_circlst_len(piles.pa) <= 3)
-			ft_sort_lst3(&piles);
-		else
-			ft_sort(&piles, nb_arg, nb_arg / 2 + nb_arg % 2);
-		ft_piles_merge_all_operations(&piles);
-		ft_piles_print_op(piles, tab_op);
+		if (ac == 2)
+			ft_split_free(arg);
+		return (write(2, "Error\n", 6), 1);
 	}
+	if (nb_arg > 1)
+		fts_sub_main(&piles, nb_arg, tab_op);
 	ft_piles_free(&piles);
 	if (ac == 2)
 		ft_split_free(arg);
